@@ -54,20 +54,32 @@ pip install -r requirements.txt
 
 --------------------------------------------------------------
 
-nano /lib/systemd/system/{name}.service
+nano /lib/systemd/system/cryptohelper.service
 
 Вставляємо:
 
-[Unit] Description={name} bot After=network.target
+[Unit] 
 
-[Service] EnvironmentFile=/etc/environment ExecStart=/home/{name}/venv/bin/python main.py ExecReload=/home/{name}/venv/bin/python main.py WorkingDirectory=/home/{name}/ KillMode=process Restart=always RestartSec=5
+Description=cryptohelper bot 
+After=network.target
 
-[Install] WantedBy=multi-user.target
+[Service] 
+
+EnvironmentFile=/etc/environment 
+ExecStart=/home/cryptohelper/venv/bin/python main.py 
+ExecReload=/home/cryptohelper/venv/bin/python main.py 
+WorkingDirectory=/home/cryptohelper/ KillMode=process 
+Restart=always 
+RestartSec=5
+
+[Install] 
+
+WantedBy=multi-user.target
 
 ---------------------------------------------------------------
 
-systemctl enable {name} - активація 
-systemctl start {name} - старт 
-systemctl stop {name} - стоп 
-systemctl restart {name} - перезапуск
+systemctl enable cryptohelper - активація 
+systemctl start cryptohelper - старт 
+systemctl stop cryptohelper - стоп 
+systemctl restart cryptohelper - перезапуск
 
